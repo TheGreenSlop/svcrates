@@ -1,0 +1,18 @@
+{
+  "item.svcrates.wooden_crate": "Wooden Crate",
+  "item.svcrates.copper_crate": "Copper Crate",
+  "item.svcrates.chorus_crate": "Chorus Crate",
+  "item.svcrates.crimson_crate": "Crimson Crate",
+  "item.svcrates.ender_crate": "Ender Crate",
+  "item.svcrates.diamond_crate": "Diamond Crate",
+  "item.svcrates.gilded_crate": "Gilded Crate",
+  "item.svcrates.iron_crate": "Iron Crate",
+  "item.svcrates.nether_crate": "Nether Crate",
+  "item.svcrates.netherite_crate": "Netherite Crate",
+  "item.svcrates.trial_crate": "Trial Crate",
+  "item.svcrates.warped_crate": "Warped Crate",
+  "item.svcrates.purpur_crate": "Purpur Crate",
+  "item.svcrates.broken_crate": "Broken Crate",
+
+  "itemgroup.svcrates.crate_items_tab": "Crates"
+}

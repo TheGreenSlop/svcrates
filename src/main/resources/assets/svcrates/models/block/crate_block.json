@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "svcrates:block/wooden_crate_top",
+    "side": "svcrates:block/wooden_crate_side"
+  }
+}

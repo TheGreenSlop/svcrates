@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "svcrates",
+	"version": "${version}",
+	"name": "SvCrates",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/svcrates/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"dev.vissca.svcrates.SvCrates"
+		],
+		"client": [
+			"dev.vissca.svcrates.client.SvCratesClient"
+		],
+		"fabric-datagen": [
+			"dev.vissca.svcrates.client.SvCratesDataGenerator"
+		]
+	},
+	"mixins": [
+		"svcrates.mixins.json",
+		{
+			"config": "svcrates.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}

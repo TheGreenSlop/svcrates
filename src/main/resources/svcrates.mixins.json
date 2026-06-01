@@ -1,0 +1,14 @@
+{
+	"required": true,
+	"package": "dev.vissca.svcrates.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+      "FishUpCrateMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

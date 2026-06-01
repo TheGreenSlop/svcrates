@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "svcrates:block/crate_block"
+    }
+  }
+}
