@@ -64,12 +64,12 @@ public class ModResourceReloadListener implements SimpleSynchronousResourceReloa
                     }
                     for (String biome : biomes) {
                         if (!Vars.biomeMap.containsKey(biome)) {
-                            SvCrates.LOGGER.info(biome);
                             Vars.biomeMap.put(biome, new ArrayList<>());
                             Vars.biomeMap.get(biome).add(key);
                         } else {
                             Vars.biomeMap.get(biome).add(key);
                         }
+                        SvCrates.LOGGER.info(String.valueOf(Vars.biomeMap.get(biome)));
                     }
 
                     // Textures
@@ -86,10 +86,24 @@ public class ModResourceReloadListener implements SimpleSynchronousResourceReloa
                         }
                     }
 
-                    // Chance
+                    // Weight
                     Integer chance = arr.get(3).getAsInt();
 
-                    Vars.crateDataMap.put(key, new Vars.CrateData(lootTable, biomes, textures, key, chance));
+                    // Dimensions
+                    List<String> dimensions = new ArrayList<>();
+                    for (JsonElement b : arr.get(4).getAsJsonArray()) {
+                        dimensions.add(b.getAsString());
+                    }
+                    for (String dimension : dimensions) {
+                        if (!Vars.dimensionMap.containsKey(dimension)) {
+                            Vars.dimensionMap.put(dimension, new ArrayList<>());
+                            Vars.dimensionMap.get(dimension).add(key);
+                        } else {
+                            Vars.dimensionMap.get(dimension).add(key);
+                        }
+                        SvCrates.LOGGER.info(String.valueOf(Vars.dimensionMap.get(dimension)));
+                    }
+                    Vars.crateDataMap.put(key, new Vars.CrateData(lootTable, biomes, textures, key, chance, dimensions));
                     index = index + 1;
 
                     // To prevent duplicates this was my workaround, I don't know if I can reset the items
@@ -137,6 +151,4 @@ public class ModResourceReloadListener implements SimpleSynchronousResourceReloa
             Vars.crateSprites.put(selectedCrate.id(), spriteList);
         }
     }
-
-
 }

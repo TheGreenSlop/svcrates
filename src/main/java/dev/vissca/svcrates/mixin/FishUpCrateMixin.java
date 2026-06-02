@@ -24,6 +24,7 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -42,48 +43,65 @@ public abstract class FishUpCrateMixin { // Modifying the output Loot from when 
 		Objects.requireNonNull(getPlayerOwner()).getWorld().getBiome(getPlayerOwner().getBlockPos());
 
 		RegistryEntry<Biome> biome = getPlayerOwner().getWorld().getBiome(getPlayerOwner().getBlockPos());
-		CratedUp myCrate = getFishingStack(biome.getIdAsString(), biome);
-		if (Random.create().nextInt(4) == 0){
+		String dimension = getPlayerOwner().getWorld().getRegistryKey().getValue().toString();
+		CratedUp myCrate = getFishingStack(biome.getIdAsString(), biome, dimension);
+		if (Random.create().nextInt(SvCrates.CONFIG.crateChance) == 0){
 			return myCrate.stack;
 		}
 		return list;
 	}
 
 	@Unique
-    public CratedUp getFishingStack(String biome, RegistryEntry<Biome> biomeLiteral){
+    public CratedUp getFishingStack(String biome, RegistryEntry<Biome> biomeLiteral, String dimension){
 		List<ItemStack> newStack = new ArrayList<>();
 
 		if (Vars.biomeMap.containsKey(biome)) {
-			return getFishedCrate(newStack, biome);
+			return getFishedCrate(newStack, biome, dimension);
 		} else {
 			for (String possibleTag : Vars.biomeMap.keySet()) {
-				if (possibleTag.startsWith("#") && possibleTag != "all") {
+				if (possibleTag.startsWith("#")) {
 					String biomeTag = possibleTag.replaceFirst("#", "");
 					TagKey<Biome> tag = TagKey.of(
 							RegistryKeys.BIOME,
 							Identifier.of(biomeTag)
 					);
 					if (biomeLiteral.isIn(tag)) {
-						return getFishedCrate(newStack, possibleTag);
+						return getFishedCrate(newStack, possibleTag, dimension);
 					}
 				}
 			}
 		}
-		return getFishedCrate(newStack, "all");
+		SvCrates.LOGGER.info("mulch");
+		return getFishedCrate(newStack, "*", dimension);
 	}
 
 	@Unique
-    public CratedUp getFishedCrate(List<ItemStack> newStack, String targetCrateId){
-		List<String> biomeMapData = Vars.biomeMap.get(targetCrateId);
-		List<String> biomeMapAllData =  new ArrayList<>(Vars.biomeMap.get("all"));
-		if (Objects.equals(targetCrateId, "all"))biomeMapAllData.clear();
+	public List<String> dimensionCheck(String dimension, List<String> crateList){
+		List<String> allowedCrates =  new ArrayList<>();
+            for (String curCrateId : crateList) {
+				SvCrates.LOGGER.info(String.valueOf(Vars.crateDataMap.get(curCrateId).biomes()));
+				if (Vars.dimensionMap.get(dimension).contains(curCrateId)|| Vars.dimensionMap.get("*").contains(curCrateId)) {
+					if (!allowedCrates.contains(curCrateId)) {
+						allowedCrates.add(curCrateId);
+					}
+				}
+            }
+        return allowedCrates;
+    }
+
+	@Unique
+    public CratedUp getFishedCrate(List<ItemStack> newStack, String targetCrateId, String dimension) {
+		List<String> biomeMapData = new ArrayList<>(Vars.biomeMap.get(targetCrateId));
+		List<String> biomeMapAllData =  new ArrayList<>(Vars.biomeMap.get("*"));
+		if (Objects.equals(targetCrateId, "*"))biomeMapAllData.clear();
+
 		biomeMapAllData.addAll(biomeMapData);
+		biomeMapAllData = dimensionCheck(dimension, biomeMapAllData);
+
 		int crateWeight = 0;
-
-		for (int weight = 0; weight < biomeMapAllData.size(); weight += 1){
-			crateWeight += Vars.crateDataMap.get(biomeMapAllData.get(weight)).chance();
-		}
-
+        for (String bData : biomeMapAllData) {
+            crateWeight += Vars.crateDataMap.get(bData).chance();
+        }
 		int weight = Random.create().nextInt(crateWeight);
 		String crateId = crateRoll(biomeMapAllData, weight);
 
