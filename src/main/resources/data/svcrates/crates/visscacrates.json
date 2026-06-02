@@ -1,23 +1,6 @@
 {
-  "wooden": ["chests/village/village_armorer", ["*"], ["wooden_crate_side", "wooden_crate_top"], 10, ["minecraft:overworld"]],
-  "copper": ["chests/village/village_desert_house", ["*"], ["copper_crate", "copper_crate"], 5, ["minecraft:overworld"]],
-  "iron": ["chests/village/village_desert_house", ["*"], ["iron_crate", "iron_crate"], 4, ["minecraft:overworld"]],
-  "diamond": ["chests/village/village_desert_house", ["*"], ["diamond_crate", "diamond_crate"], 1, ["minecraft:overworld"]],
-
-  "taiga": ["chests/village/village_desert_house", ["#minecraft:is_taiga", "#c:is_taiga"], ["taiga_crate", "taiga_crate"], 5, ["*"]],
-  "jungle": ["chests/village/village_desert_house", ["#minecraft:is_jungle", "#c:is_jungle"], ["jungle_crate", "jungle_crate"], 5, ["*"]],
-  "frozen": ["chests/village/village_desert_house", ["#minecraft:spawns_white_rabbits"], ["frozen_crate", "frozen_crate"], 5, ["*"]],
-
-  "chorus": ["chests/village/village_desert_house", ["*"], ["chorus_crate", "chorus_crate"], 3, ["minecraft:the_end"]],
-  "ender": ["chests/village/village_desert_house", ["*"], ["ender_crate_bottom", "ender_crate_top", "ender_crate_side", "ender_crate_side", "ender_crate_side", "ender_crate_side"], 1, ["minecraft:the_end"]],
-  "purpur": ["chests/village/village_fisher", ["*"], ["purpur_crate", "purpur_crate"], 3, ["minecraft:the_end"]],
-
-  "nether": ["chests/village/village_desert_house", ["minecraft:the_void"], ["nether_crate", "nether_crate"], 2, ["*"]],
-  "crimson": ["chests/village/village_desert_house", ["minecraft:the_void"], ["crimson_crate_side", "crimson_crate_top"], 2, ["*"]],
-  "warped": ["chests/village/village_desert_house", ["minecraft:the_void"], ["warped_crate_side", "warped_crate_top"], 2, ["*"]],
-
-  "gilded": ["chests/village/village_desert_house", ["minecraft:the_void"], ["gilded_crate_side", "gilded_crate_top"], 3, ["*"]],
-  "netherite": ["chests/village/village_desert_house", ["minecraft:the_void"], ["netherite_crate", "netherite_crate"], 8, ["*"]],
-
-  "trial": ["chests/village/village_desert_house", ["minecraft:the_void"], ["trial_crate_bottom", "trial_crate_top", "trial_crate_front", "trial_crate_side", "trial_crate_side", "trial_crate_side"], 3, ["*"]]
+  "wooden": ["svcrates:crates/wooden_crate", ["*"], ["wooden_crate_side", "wooden_crate_top"], 20, ["minecraft:overworld"]],
+  "copper": ["svcrates:crates/copper_crate", ["*"], ["copper_crate", "copper_crate"], 10, ["minecraft:overworld"]],
+  "iron": ["svcrates:crates/iron_crate", ["*"], ["iron_crate", "iron_crate"], 5, ["minecraft:overworld"]],
+  "diamond": ["svcrates:crates/diamond_crate", ["*"], ["diamond_crate", "diamond_crate"], 1, ["minecraft:overworld"]]
 }
