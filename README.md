@@ -8,3 +8,5 @@ Data-driven!
 ## You can add your own crates with a simple data pack and resource pack! Just follow the guide over on the GitHub wiki here. Templates will be provided.
 
 You can get the mod here: [Modrinth Page](https://modrinth.com/mod/svcrates)
+
+By Scarlett/Vissca and bonniegem.
