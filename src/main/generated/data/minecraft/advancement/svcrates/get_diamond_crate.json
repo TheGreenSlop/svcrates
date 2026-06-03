@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:svcrates/get_iron_crate",
+  "criteria": {
+    "collect_diamond_crate": {
+      "conditions": {
+        "items": [
+          {
+            "components": {
+              "svcrates:crate_id": "diamond"
+            },
+            "items": "svcrates:crate_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.svcrates.get_diamond_crate.description"
+    },
+    "icon": {
+      "components": {
+        "svcrates:crate_id": "diamond"
+      },
+      "count": 1,
+      "id": "svcrates:crate_block"
+    },
+    "title": {
+      "translate": "advancement.svcrates.get_diamond_crate.title"
+    }
+  },
+  "requirements": [
+    [
+      "collect_diamond_crate"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

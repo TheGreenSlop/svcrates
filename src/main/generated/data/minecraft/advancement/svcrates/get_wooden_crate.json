@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:husbandry/fishy_business",
+  "criteria": {
+    "collect_wooden_crate": {
+      "conditions": {
+        "items": [
+          {
+            "components": {
+              "svcrates:crate_id": "wooden"
+            },
+            "items": "svcrates:crate_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.svcrates.get_wooden_crate.description"
+    },
+    "icon": {
+      "components": {
+        "svcrates:crate_id": "wooden"
+      },
+      "count": 1,
+      "id": "svcrates:crate_block"
+    },
+    "title": {
+      "translate": "advancement.svcrates.get_wooden_crate.title"
+    }
+  },
+  "requirements": [
+    [
+      "collect_wooden_crate"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

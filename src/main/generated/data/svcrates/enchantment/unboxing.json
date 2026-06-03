@@ -1,0 +1,19 @@
+{
+  "anvil_cost": 6,
+  "description": {
+    "translate": "enchantment.svcrates.unboxing"
+  },
+  "max_cost": {
+    "base": 1,
+    "per_level_above_first": 12
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 6
+  },
+  "slots": [],
+  "primary_items": "#minecraft:enchantable/fishing",
+  "supported_items": "#minecraft:enchantable/fishing",
+  "weight": 1
+}

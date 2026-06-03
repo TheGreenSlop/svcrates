@@ -9,14 +9,15 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
 /// Same as before, registers things to the game so the game knows what the freak to do with it.
 public class ModBlocks {
     public static final Block CRATE_BLOCK = register(
-            new CrateBlock(AbstractBlock.Settings.create().hardness(0.2f).nonOpaque()),
+            new CrateBlock(AbstractBlock.Settings.create().hardness(0.2f).nonOpaque().sounds(BlockSoundGroup.WOOD)),
             "crate_block", true);
-    /// VERY temporary, incase I ever add new block types I should redo this function
+    /// VERY temporary, in case I ever add new block types I should redo this function
     /// Because right now it ALWAYS makes their item be a CrateItem, #notideal.
     public static Block register(Block block, String name, boolean shouldRegisterItem) {
         Identifier id = Identifier.of(SvCrates.MOD_ID, name);

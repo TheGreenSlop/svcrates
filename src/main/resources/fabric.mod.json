@@ -2,10 +2,10 @@
 	"schemaVersion": 1,
 	"id": "svcrates",
 	"version": "${version}",
-	"name": "SvCrates",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Crates",
+	"description": "A mod that adds fishing crates to minecraft to make fishing even more rewarding.",
 	"authors": [
-		"Me!"
+		"Scarlett/Vissca", "bonniegem"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -22,7 +22,8 @@
 			"dev.vissca.svcrates.client.SvCratesClient"
 		],
 		"fabric-datagen": [
-			"dev.vissca.svcrates.client.SvCratesDataGenerator"
+			"dev.vissca.svcrates.client.SvCratesDataGenerator",
+			"dev.vissca.svcrates.datagen.ModDataGeneratorEntrypoint"
 		]
 	},
 	"mixins": [

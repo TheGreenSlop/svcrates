@@ -2,6 +2,7 @@ package dev.vissca.svcrates;
 
 import dev.vissca.svcrates.block.ModBlocks;
 import dev.vissca.svcrates.block.entity.ModBlockEntities;
+import dev.vissca.svcrates.enchantment.ModEnchantmentEffects;
 import dev.vissca.svcrates.item.ModItemGroups;
 import dev.vissca.svcrates.item.ModItems;
 import dev.vissca.svcrates.system.ModConfig;
@@ -34,6 +35,8 @@ public class SvCrates implements ModInitializer {
 		ModBlocks.registerBlocks();
 		ModBlockEntities.registerBlockEntities();
 		ModItemGroups.registerItemGroups();
+		ModEnchantmentEffects.registerModEnchantmentEffects();
+
 	}
 }
 

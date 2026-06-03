@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:svcrates/get_copper_crate",
+  "criteria": {
+    "collect_iron_crate": {
+      "conditions": {
+        "items": [
+          {
+            "components": {
+              "svcrates:crate_id": "iron"
+            },
+            "items": "svcrates:crate_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.svcrates.get_iron_crate.description"
+    },
+    "icon": {
+      "components": {
+        "svcrates:crate_id": "iron"
+      },
+      "count": 1,
+      "id": "svcrates:crate_block"
+    },
+    "title": {
+      "translate": "advancement.svcrates.get_iron_crate.title"
+    }
+  },
+  "requirements": [
+    [
+      "collect_iron_crate"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

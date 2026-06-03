@@ -2,9 +2,12 @@ package dev.vissca.svcrates.mixin;
 
 import dev.vissca.svcrates.SvCrates;
 import dev.vissca.svcrates.Vars;
+import dev.vissca.svcrates.enchantment.ModEnchantmentEffects;
 import dev.vissca.svcrates.system.ModResourceReloadListener;
 import dev.vissca.svcrates.block.ModBlocks;
 import dev.vissca.svcrates.item.custom.CrateItem;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.FishingBobberEntity;
 import net.minecraft.item.ItemStack;
@@ -41,11 +44,15 @@ public abstract class FishUpCrateMixin { // Modifying the output Loot from when 
 	@ModifyVariable(method = "use", at = @At(value = "STORE"), ordinal = 0)
 	private List<ItemStack> hookLoot(List<ItemStack> list) {
 		Objects.requireNonNull(getPlayerOwner()).getWorld().getBiome(getPlayerOwner().getBlockPos());
-
+		RegistryEntry<Enchantment> unboxing = getPlayerOwner().getWorld().getRegistryManager()
+				.getWrapperOrThrow(RegistryKeys.ENCHANTMENT)
+				.getOrThrow(ModEnchantmentEffects.UNBOXING);
+		int level = EnchantmentHelper.getLevel(unboxing, getPlayerOwner().getInventory().getMainHandStack());
+		SvCrates.LOGGER.info(String.valueOf(level));
 		RegistryEntry<Biome> biome = getPlayerOwner().getWorld().getBiome(getPlayerOwner().getBlockPos());
 		String dimension = getPlayerOwner().getWorld().getRegistryKey().getValue().toString();
 		CratedUp myCrate = getFishingStack(biome.getIdAsString(), biome, dimension);
-		if (Random.create().nextInt(SvCrates.CONFIG.crateChance) == 0){
+		if ((Random.create().nextInt(SvCrates.CONFIG.crateChance - level)) == 0){
 			return myCrate.stack;
 		}
 		return list;
@@ -71,7 +78,6 @@ public abstract class FishUpCrateMixin { // Modifying the output Loot from when 
 				}
 			}
 		}
-		SvCrates.LOGGER.info("mulch");
 		return getFishedCrate(newStack, "*", dimension);
 	}
 
@@ -79,7 +85,6 @@ public abstract class FishUpCrateMixin { // Modifying the output Loot from when 
 	public List<String> dimensionCheck(String dimension, List<String> crateList){
 		List<String> allowedCrates =  new ArrayList<>();
             for (String curCrateId : crateList) {
-				SvCrates.LOGGER.info(String.valueOf(Vars.crateDataMap.get(curCrateId).biomes()));
 				if (Vars.dimensionMap.get(dimension).contains(curCrateId)|| Vars.dimensionMap.get("*").contains(curCrateId)) {
 					if (!allowedCrates.contains(curCrateId)) {
 						allowedCrates.add(curCrateId);
