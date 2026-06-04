@@ -131,6 +131,32 @@
           "type": "minecraft:item",
           "name": "minecraft:slime_ball",
           "weight": 15
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:book",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_enchantments",
+              "enchantments": {
+                "svcrates:unboxing": 1
+              },
+              "add": true
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:book",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": 18,
+              "options": "#minecraft:non_treasure"
+            }
+          ]
         }
       ]
     }

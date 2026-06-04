@@ -1,4 +1,6 @@
-package dev.vissca.svcrates;
+package dev.vissca.svcrates.system;
+
+import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +28,7 @@ public class Vars {
     public static String getCrateDataTexture(CrateData crateDataVal, Integer id){
         return crateDataVal.textures.get(id);
     }
+    public record CratedUp(List<ItemStack> stack, Integer chance){ }
     public static Integer getCrateDataChance(CrateData crateDataVal){
         return crateDataVal.chance;
     }

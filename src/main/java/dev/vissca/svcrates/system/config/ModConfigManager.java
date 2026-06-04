@@ -1,4 +1,4 @@
-package dev.vissca.svcrates.system;
+package dev.vissca.svcrates.system.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -7,7 +7,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import java.io.BufferedReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-/// Main class that handles configs
+/// Main class that handles configs.
 public class ModConfigManager {
     private static final Path PATH = FabricLoader.getInstance()
             .getConfigDir()

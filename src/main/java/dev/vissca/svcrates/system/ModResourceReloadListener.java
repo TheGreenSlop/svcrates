@@ -1,8 +1,8 @@
 package dev.vissca.svcrates.system;
 
+import dev.vissca.svcrates.system.Vars;
 import com.google.gson.*;
 import dev.vissca.svcrates.SvCrates;
-import dev.vissca.svcrates.Vars;
 import dev.vissca.svcrates.block.ModBlocks;
 import dev.vissca.svcrates.item.ModItemGroups;
 import dev.vissca.svcrates.item.custom.CrateItem;
@@ -37,11 +37,12 @@ public class ModResourceReloadListener implements SimpleSynchronousResourceReloa
     public void gatherCrateResources(ResourceManager manager){
         Vars.crateDataMap.clear();
         Vars.biomeMap.clear();
+        Vars.dimensionMap.clear();
+        Vars.crateSprites.clear();
 
         Map<Identifier, Resource> resources = manager.findResources(
                 "crates", path -> path.getPath().endsWith(".json"));
-        RegistryKey<ItemGroup> itemGroup = RegistryKey.of(RegistryKeys.ITEM_GROUP,
-                Identifier.of(SvCrates.MOD_ID, "crate_items_tab"));
+
 
         for (Map.Entry<Identifier, Resource> entry : resources.entrySet()) {
             try {
@@ -69,7 +70,6 @@ public class ModResourceReloadListener implements SimpleSynchronousResourceReloa
                         } else {
                             Vars.biomeMap.get(biome).add(key);
                         }
-                        SvCrates.LOGGER.info(String.valueOf(Vars.biomeMap.get(biome)));
                     }
 
                     // Textures
@@ -101,29 +101,19 @@ public class ModResourceReloadListener implements SimpleSynchronousResourceReloa
                         } else {
                             Vars.dimensionMap.get(dimension).add(key);
                         }
-                        SvCrates.LOGGER.info(String.valueOf(Vars.dimensionMap.get(dimension)));
                     }
                     Vars.crateDataMap.put(key, new Vars.CrateData(lootTable, biomes, textures, key, chance, dimensions));
                     index = index + 1;
 
-                    // To prevent duplicates this was my workaround, I don't know if I can reset the items
-                    // In the tab, I'll figure out eventually, should include data-driven crates too tho!
-                    if (ModItemGroups.shouldRegen) {
-                        ItemStack tabItemStack = new ItemStack(ModBlocks.CRATE_BLOCK.asItem());
-                        tabItemStack.set(CrateItem.CRATE_ID, key);
-                        tabItemStack.set(CrateItem.CRATE_LOOT_ID, lootTable);
-
-                        ItemGroupEvents.modifyEntriesEvent(itemGroup).register(entries -> {
-                            entries.add(tabItemStack);
-                        });
-                    }
+                    ModItemGroups.addGroups(key, lootTable);
                 }
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-        ModItemGroups.shouldRegen = false;
+        SvCrates.LOGGER.info("Loaded {} crates", Vars.crateDataMap.size());
+
         gatherSprites();
     }
 
@@ -131,7 +121,9 @@ public class ModResourceReloadListener implements SimpleSynchronousResourceReloa
     /// Method juuust for the sake of cleaning the code up.
     @Override
     public void reload(ResourceManager manager) {
+        SvCrates.LOGGER.info("Reload listener running on {}", manager.getClass().getName());
         gatherCrateResources(manager);
+        manager.streamResourcePacks();
     }
 
     /// Gathers and saves all textures and sprite id paths. Eg: "wooden": "svcrates:block/wooden_crate_top".

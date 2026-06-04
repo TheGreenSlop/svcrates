@@ -1,89 +1,75 @@
 package dev.vissca.svcrates.datagen.advancement;
 
-import dev.vissca.svcrates.SvCrates;
 import dev.vissca.svcrates.block.ModBlocks;
+import dev.vissca.svcrates.datagen.advancement.criterion.GetCratesCriterion;
+import dev.vissca.svcrates.advancement.criterion.ModCriteria;
 import dev.vissca.svcrates.item.custom.CrateItem;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.advancement.AdvancementFrame;
-import net.minecraft.advancement.criterion.InventoryChangedCriterion;
 import net.minecraft.item.ItemStack;
-import net.minecraft.predicate.ComponentPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
+/// Class that provides advancement stuff for the data gen.
 public class ModAdvancementProvider extends FabricAdvancementProvider {
+    // Variables
     AdvancementEntry FISHY_BUSINESS = new AdvancementEntry(
             Identifier.ofVanilla("husbandry/fishy_business"),
-            null
-    );
+            null);
+    AdvancementEntry CollectCrateOne;
+    AdvancementEntry CollectCrateTwo;
+    AdvancementEntry CollectCrateThree;
+    AdvancementEntry CollectCrateFour;
 
     public ModAdvancementProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(output, registryLookup);
     }
 
+    /// Helper method that streamlines adding these 4 advancements, because they are basically the same thing lol.
+    public AdvancementEntry generateCrateAdvancementHelper(String iconId, String translationId, String id, AdvancementFrame frame,
+                                               Consumer<AdvancementEntry> consumer, AdvancementEntry parent, int amount){
+        // Local Vars
+        ItemStack icon = new ItemStack(ModBlocks.CRATE_BLOCK);
+        icon.set(CrateItem.CRATE_ID, iconId);
+
+        return Advancement.Builder.create()
+                .display(icon,
+                        Text.translatable("advancement.svcrates."+translationId+".title"),
+                        Text.translatable("advancement.svcrates."+translationId+".description"),
+                        null, frame, true, true, false)
+                .parent(parent)
+                .criterion(translationId, ModCriteria.GET_CRATES.create(
+                        new GetCratesCriterion.Conditions(Optional.empty(), amount)))
+                .build(consumer, "svcrates:" + id);
+    }
+
+    /// Generates the advancements. Duh.
     @Override
     public void generateAdvancement(RegistryWrapper.WrapperLookup registryLookup, Consumer<AdvancementEntry> consumer) {
-        ItemStack wooden_icon = new ItemStack(ModBlocks.CRATE_BLOCK);
-        wooden_icon.set(CrateItem.CRATE_ID, "wooden");
-        AdvancementEntry GET_WOODEN_CRATE = Advancement.Builder.create()
-                .display(wooden_icon,
-                        Text.translatable("advancement.svcrates.get_wooden_crate.title"),
-                        Text.translatable("advancement.svcrates.get_wooden_crate.description"),
-                                null, AdvancementFrame.TASK, true, true, false)
-                .parent(FISHY_BUSINESS)
-                .criterion("collect_wooden_crate", InventoryChangedCriterion.Conditions.items(
-                        ItemPredicate.Builder.create().items(
-                                ModBlocks.CRATE_BLOCK.asItem())
-                                .component(ComponentPredicate.builder().add(CrateItem.CRATE_ID, "wooden").build())))
-                .build(consumer, SvCrates.MOD_ID + "/get_wooden_crate");
+        CollectCrateOne = generateCrateAdvancementHelper(
+                "wooden", "collect_crate_one", "collect_crates_one",
+                AdvancementFrame.TASK, consumer, FISHY_BUSINESS, 1);
 
-        ItemStack copper_icon = new ItemStack(ModBlocks.CRATE_BLOCK);
-        copper_icon.set(CrateItem.CRATE_ID, "copper");
-        AdvancementEntry GET_COPPER_CRATE = Advancement.Builder.create()
-                .display(copper_icon,
-                        Text.translatable("advancement.svcrates.get_copper_crate.title"),
-                        Text.translatable("advancement.svcrates.get_copper_crate.description"),
-                        null, AdvancementFrame.TASK, true, true, false)
-                .parent(GET_WOODEN_CRATE)
-                .criterion("collect_copper_crate", InventoryChangedCriterion.Conditions.items(
-                        ItemPredicate.Builder.create().items(
-                                        ModBlocks.CRATE_BLOCK.asItem())
-                                .component(ComponentPredicate.builder().add(CrateItem.CRATE_ID, "copper").build())))
-                .build(consumer, SvCrates.MOD_ID + "/get_copper_crate");
+        CollectCrateTwo = generateCrateAdvancementHelper(
+                "copper", "collect_crate_two", "collect_crates_two",
+                AdvancementFrame.TASK, consumer, CollectCrateOne, 25);
 
-        ItemStack iron_icon = new ItemStack(ModBlocks.CRATE_BLOCK);
-        iron_icon.set(CrateItem.CRATE_ID, "iron");
-        AdvancementEntry GET_IRON_CRATE = Advancement.Builder.create()
-                .display(iron_icon,
-                        Text.translatable("advancement.svcrates.get_iron_crate.title"),
-                        Text.translatable("advancement.svcrates.get_iron_crate.description"),
-                        null, AdvancementFrame.TASK, true, true, false)
-                .parent(GET_COPPER_CRATE)
-                .criterion("collect_iron_crate", InventoryChangedCriterion.Conditions.items(
-                        ItemPredicate.Builder.create().items(
-                                        ModBlocks.CRATE_BLOCK.asItem())
-                                .component(ComponentPredicate.builder().add(CrateItem.CRATE_ID, "iron").build())))
-                .build(consumer, SvCrates.MOD_ID + "/get_iron_crate");
+        CollectCrateThree = generateCrateAdvancementHelper(
+                "iron", "collect_crate_three", "collect_crates_three",
+                AdvancementFrame.TASK, consumer, CollectCrateTwo, 50);
 
-        ItemStack diamond_icon = new ItemStack(ModBlocks.CRATE_BLOCK);
-        diamond_icon.set(CrateItem.CRATE_ID, "diamond");
-        AdvancementEntry GET_DIAMOND_CRATE = Advancement.Builder.create()
-                .display(diamond_icon,
-                        Text.translatable("advancement.svcrates.get_diamond_crate.title"),
-                        Text.translatable("advancement.svcrates.get_diamond_crate.description"),
-                        null, AdvancementFrame.TASK, true, true, false)
-                .parent(GET_IRON_CRATE)
-                .criterion("collect_diamond_crate", InventoryChangedCriterion.Conditions.items(
-                        ItemPredicate.Builder.create().items(
-                                        ModBlocks.CRATE_BLOCK.asItem())
-                                .component(ComponentPredicate.builder().add(CrateItem.CRATE_ID, "diamond").build())))
-                .build(consumer, SvCrates.MOD_ID + "/get_diamond_crate");
+        CollectCrateFour = generateCrateAdvancementHelper(
+                "diamond", "collect_crate_four", "collect_crates_four",
+                AdvancementFrame.TASK, consumer, CollectCrateOne, 100);
+
+
     }
 }

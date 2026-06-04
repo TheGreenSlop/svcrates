@@ -1,6 +1,6 @@
 package dev.vissca.svcrates.system;
 
-import dev.vissca.svcrates.Vars;
+import dev.vissca.svcrates.system.Vars;
 
 /// Full of my sloppy helper methods :D.
 public class Util {

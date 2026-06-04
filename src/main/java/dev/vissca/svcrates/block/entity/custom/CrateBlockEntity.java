@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
 public class CrateBlockEntity extends BlockEntity {
+    // Variables
     public CrateBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.CRATE_BLOCK_ENTITY, pos, state);
     }

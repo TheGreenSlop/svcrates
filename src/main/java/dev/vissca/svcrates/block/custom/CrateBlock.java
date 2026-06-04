@@ -1,7 +1,7 @@
 package dev.vissca.svcrates.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import dev.vissca.svcrates.Vars;
+import dev.vissca.svcrates.system.Vars;
 import dev.vissca.svcrates.block.entity.custom.CrateBlockEntity;
 import dev.vissca.svcrates.item.custom.CrateItem;
 import net.minecraft.block.*;
@@ -54,6 +54,7 @@ public class CrateBlock extends BlockWithEntity implements BlockEntityProvider {
     @Override
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isClient && !player.isCreative()) {
+            // Local Vars
             BlockEntity crateEntity = world.getBlockEntity(pos);
             ItemStack stack = this.asItem().getDefaultStack();
             if (crateEntity instanceof CrateBlockEntity crate) {
@@ -63,6 +64,7 @@ public class CrateBlock extends BlockWithEntity implements BlockEntityProvider {
                 ItemEntity ent = new ItemEntity(
                         world, pos.toCenterPos().getX(), pos.toCenterPos().getY(), pos.toCenterPos().z, stack);
                 ent.setToDefaultPickupDelay();
+
                 world.spawnEntity(ent);
             }
         }
@@ -77,16 +79,16 @@ public class CrateBlock extends BlockWithEntity implements BlockEntityProvider {
     }
 
     @Override
-    protected void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {super.onBlockAdded(state, world, pos, oldState, notify);}
+    protected void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState,
+                                boolean notify) {super.onBlockAdded(state, world, pos, oldState, notify);}
 
-    /// This is to update my block's data, to tell the game to do it atleast, one of the places that do that
+    /// This is to update my block's data, to tell the game to do it at least, one of the places that do that
     /// If I remember correctly.
     @Override
     protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         if (state.getBlock() != newState.getBlock()) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof CrateBlockEntity) {
-
                 world.updateComparators(pos, this);
             }
             super.onStateReplaced(state, world, pos, newState, moved);

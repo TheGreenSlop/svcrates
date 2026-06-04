@@ -8,7 +8,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-/// Important Class! Registers block entities, they won't appear in game otherwise, simillar to how
+/// Important Class! Registers block entities, they won't appear in game otherwise, similar to how
 /// Items and Blocks work.
 public class ModBlockEntities {
     public static final BlockEntityType<CrateBlockEntity> CRATE_BLOCK_ENTITY =

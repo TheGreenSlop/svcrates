@@ -1,0 +1,32 @@
+{
+  "parent": "svcrates:collect_crates_two",
+  "criteria": {
+    "collect_crate_three": {
+      "conditions": {
+        "amount": 50
+      },
+      "trigger": "svcrates:get_crates"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.svcrates.collect_crate_three.description"
+    },
+    "icon": {
+      "components": {
+        "svcrates:crate_id": "iron"
+      },
+      "count": 1,
+      "id": "svcrates:crate_block"
+    },
+    "title": {
+      "translate": "advancement.svcrates.collect_crate_three.title"
+    }
+  },
+  "requirements": [
+    [
+      "collect_crate_three"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

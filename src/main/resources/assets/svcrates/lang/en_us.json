@@ -16,14 +16,16 @@
 
   "itemgroup.svcrates.crate_items_tab": "Crates",
 
-  "advancement.svcrates.get_wooden_crate.title": "Get Crate",
-  "advancement.svcrates.get_wooden_crate.description": "Collect The Crate",
-  "advancement.svcrates.get_iron_crate.title": "My Crate is Of Iron",
-  "advancement.svcrates.get_iron_crate.description": "Delicious",
-  "advancement.svcrates.get_copper_crate.title": "Copper",
-  "advancement.svcrates.get_copper_crate.description": "THUNDER SPELL",
-  "advancement.svcrates.get_diamond_crate.title": "Diamonds!",
-  "advancement.svcrates.get_diamond_crate.description": "Mine the pickaxe",
+  "advancement.svcrates.collect_crate_one.title": "First Unboxing",
+  "advancement.svcrates.collect_crate_one.description": "Obtain a crate from fishing.",
+  "advancement.svcrates.collect_crate_two.title": "They're Crate!",
+  "advancement.svcrates.collect_crate_two.description": "Fish up 25 crates.",
+  "advancement.svcrates.collect_crate_three.title": "Crate Conundrum",
+  "advancement.svcrates.collect_crate_three.description": "Fish up 50 crates.",
+  "advancement.svcrates.collect_crate_four.title": "King of the Crates",
+  "advancement.svcrates.collect_crate_four.description": "Fish up 100 crates, and then reevaluate your life choices.",
 
-  "enchantment.svcrates.unboxing": "Unboxing"
+  "enchantment.svcrates.unboxing": "Unboxing",
+  "stat.svcrates.fish_up_crate": "Crates Fished",
+  "stat.svcrates.open_crate": "Crates Opened"
 }

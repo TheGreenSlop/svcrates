@@ -1,5 +1,6 @@
 package dev.vissca.svcrates.datagen.enchantment;
 
+import dev.vissca.svcrates.SvCrates;
 import dev.vissca.svcrates.enchantment.ModEnchantmentEffects;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
@@ -9,6 +10,8 @@ import net.minecraft.registry.tag.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
+/// Just like every other provider, exists to provide stuff to the data generators!
+/// This one is for enchantments.
 public class ModEnchantmentProvider extends FabricDynamicRegistryProvider {
     public ModEnchantmentProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
@@ -24,7 +27,8 @@ public class ModEnchantmentProvider extends FabricDynamicRegistryProvider {
         return "Enchantments";
     }
 
-    private static void register(Registerable<Enchantment> context, RegistryKey<Enchantment> key, Enchantment.Builder builder) {
+    private static void register(Registerable<Enchantment> context, RegistryKey<Enchantment> key,
+                                 Enchantment.Builder builder) {
         context.register(key, builder.build(key.getRegistry()));
     }
 
@@ -38,6 +42,6 @@ public class ModEnchantmentProvider extends FabricDynamicRegistryProvider {
                                 Enchantment.leveledCost(1,6),
                                 Enchantment.leveledCost(1,12),
                                 6)
-                ));
+                                ));
     }
 }

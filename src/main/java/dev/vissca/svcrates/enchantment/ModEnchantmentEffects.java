@@ -15,8 +15,8 @@ public class ModEnchantmentEffects {
         Identifier id = Identifier.of(SvCrates.MOD_ID, path);
         return RegistryKey.of(RegistryKeys.ENCHANTMENT, id);
     }
-    public static MapCodec<UnboxingEnchantmentEffect> UNBOXING_ENCHANT = register("unboxing_enchant", UnboxingEnchantmentEffect.CODEC);
-    public static final RegistryKey<Enchantment> UNBOXING = key("unboxing");
+    public static MapCodec<UnboxingEnchantmentEffect> UNBOXING_ENCHANT = register("unboxing", UnboxingEnchantmentEffect.CODEC);
+    public static final RegistryKey<Enchantment> UNBOXING = key("svcrates.unboxing");
 
     private static <T extends EnchantmentEntityEffect> MapCodec<T> register(String id, MapCodec<T> codec) {
         return Registry.register(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, Identifier.of(SvCrates.MOD_ID, id), codec);

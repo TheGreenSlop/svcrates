@@ -2,7 +2,8 @@ package dev.vissca.svcrates.item.custom;
 
 import com.mojang.serialization.Codec;
 import dev.vissca.svcrates.SvCrates;
-import dev.vissca.svcrates.Vars;
+import dev.vissca.svcrates.statistic.ModStatistics;
+import dev.vissca.svcrates.system.Vars;
 import dev.vissca.svcrates.block.entity.custom.CrateBlockEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -73,7 +74,7 @@ public class CrateItem extends BlockItem {
                     .add(LootContextParameters.ORIGIN, player.getPos())
                     .add(LootContextParameters.THIS_ENTITY, player)
                     .build(LootContextTypes.CHEST);
-
+            player.increaseStat(ModStatistics.OPEN_CRATE, 1);
             List<ItemStack> stacks = lootTable.generateLoot(lootContextParameterSet);
             for (ItemStack itemStack : stacks) {
                 if (!player.giveItemStack(itemStack)) {

@@ -1,6 +1,6 @@
 package dev.vissca.svcrates.block.entity.render;
 
-import dev.vissca.svcrates.Vars;
+import dev.vissca.svcrates.system.Vars;
 import dev.vissca.svcrates.item.custom.CrateItem;
 import dev.vissca.svcrates.block.entity.custom.CrateBlockEntity;
 import dev.vissca.svcrates.system.Util;
@@ -33,28 +33,28 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-
 @Environment(EnvType.CLIENT)
-/// This is the class that allows me to dynamically render the crates!
 public class CrateBlockEntityBakedModel implements UnbakedModel, BakedModel, FabricBakedModel {
-
-    /// Map of Sprites attached to a string identifier, used for faces of the crates (CLIENT ONLY)
+    // Vars
     public static Map<String, List<Sprite>> sprites = new HashMap<>();
 
-    /// Gets a list of all sprites that are in the current datapack/respack! Needs some work it is not ideal...
-    public static void generateSprites(){
-        for (int sId = 0; sId < Vars.crateSprites.size(); sId = sId + 1){
-            String targetCrate = Util.getCrateIdByInt(sId);
+    public static void generateSprites() {
+        for (int sId = 0; sId < Vars.crateSprites.size(); sId++) {
+            // Local Vars
+            String targetCrateId = Util.getCrateIdByInt(sId);
 
-            if (!sprites.containsKey(targetCrate)){
+            if (!sprites.containsKey(targetCrateId) && Vars.crateSprites.containsKey(targetCrateId)) {
+                //Temp Vars
                 List<Sprite> tempList = new ArrayList<>();
-                for (int csId = 0; csId < Vars.crateSprites.get(targetCrate).size(); csId = csId + 1){
-                    SpriteIdentifier newSprite = new SpriteIdentifier(PlayerScreenHandler.BLOCK_ATLAS_TEXTURE,
-                            Identifier.of(Vars.crateSprites.get(targetCrate).get(csId)));
+
+                for (int csId = 0; csId < Vars.crateSprites.get(targetCrateId).size(); csId++) {
+                    //Temp Vars
+                    SpriteIdentifier newSprite = new SpriteIdentifier(
+                            PlayerScreenHandler.BLOCK_ATLAS_TEXTURE,
+                            Identifier.of(Vars.crateSprites.get(targetCrateId).get(csId)));
                     tempList.add(newSprite.getSprite());
                 }
-                sprites.put(targetCrate, tempList);
-
+                sprites.put(targetCrateId, tempList);
             }
         }
     }
@@ -63,29 +63,40 @@ public class CrateBlockEntityBakedModel implements UnbakedModel, BakedModel, Fab
     public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction face, Random random) {return List.of();}
 
     @Override
-    public boolean useAmbientOcclusion() {return false;}
+    public boolean useAmbientOcclusion() { return false; }
 
     @Override
-    public boolean hasDepth() {return false;}
+    public boolean hasDepth() { return false; }
 
     @Override
-    public boolean isSideLit() {return false;}
+    public boolean isSideLit() { return false; }
 
     @Override
-    public boolean isBuiltin() {return false;}
+    public boolean isBuiltin() { return false; }
 
+    /// Sets the particle to the wooden one by default, unsure how to get this to work for dynamic ones yet...
     @Override
-    /// Sets the particle to the default wooden crate one, not sure how to improve it...
-    /// Returns oak planks texture as a fallback, close enough.
     public Sprite getParticleSprite() {
-        if (sprites.isEmpty()){
-            return MinecraftClient.getInstance().getBlockRenderManager()
-                    .getModel(Blocks.OAK_PLANKS.getDefaultState()).getParticleSprite();
+        if (sprites.isEmpty() || !sprites.containsKey("wooden")) {
+            return MinecraftClient.getInstance()
+                    .getBlockRenderManager()
+                    .getModel(Blocks.OAK_PLANKS.getDefaultState())
+                    .getParticleSprite();
         }
-        return sprites.get("wooden").getFirst();
-    }
 
-    /// This sets the block and item rendering to be the same as any other block's!
+        // Local Vars
+        List<Sprite> spriteList = sprites.get("wooden");
+
+        if (spriteList == null || spriteList.isEmpty()) {
+            return MinecraftClient.getInstance()
+                    .getBlockRenderManager()
+                    .getModel(Blocks.OAK_PLANKS.getDefaultState())
+                    .getParticleSprite();
+        }
+
+        return spriteList.getFirst();
+    }
+    /// Sets the block's transformations to match a generic Block and BlockItem
     @Override
     public ModelTransformation getTransformation() {
         return ModelHelper.MODEL_TRANSFORM_BLOCK;
@@ -101,82 +112,80 @@ public class CrateBlockEntityBakedModel implements UnbakedModel, BakedModel, Fab
     public void setParents(Function<Identifier, UnbakedModel> modelLoader) {}
 
     @Override
-    public @Nullable BakedModel bake(Baker baker, Function<SpriteIdentifier, Sprite> textureGetter, ModelBakeSettings rotationContainer) {return this;}
+    public @Nullable BakedModel bake(Baker baker, Function<SpriteIdentifier, Sprite> textureGetter,
+                                     ModelBakeSettings rotationContainer) {return this;}
 
     @Override
     public boolean isVanillaAdapter() {return false;}
 
-    public static void insertSpritesOnMesh(QuadEmitter emitter, String targetCrate, Integer sides){
-        for(Direction direction : Direction.values()) {
+    /// Puts the sprites on the faces of the block, was made to prevent duplicate code blocks.
+    /// Bases it on targetCrateId (String) and sides (int)
+    public static void insertSpritesOnMesh(QuadEmitter emitter, String targetCrateId, int sides) {
+        // Local Vars
+        List<Sprite> list = sprites.get(targetCrateId); if (list == null || list.isEmpty()) return;
+
+        // For each direction apply a texture.
+        for (Direction direction : Direction.values()) {
+            // Temp Vars
+            Sprite sprite;
+
+            emitter.square(direction, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f);
+
+            // If the crateDataMap.textures() in this context has exactly 6 entries or more it gives each face
+            // A unique texture.
             if (sides >= 6) {
-                emitter.square(direction, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f);
-                emitter.spriteBake(sprites.get(targetCrate).get(direction.getId()), MutableQuadView.BAKE_LOCK_UV);
-                emitter.color(-1, -1, -1, -1);
-                emitter.emit();
+                int index = Math.min(direction.getId(), list.size() - 1);
+                sprite = list.get(index);
+            // Otherwise it just sets the faces like a log block using the first and last texture on the list.
             } else {
-                emitter.square(direction, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f);
-                if (direction == Direction.UP || direction == Direction.DOWN){
-                    emitter.spriteBake(sprites.get(targetCrate).getLast(), MutableQuadView.BAKE_LOCK_UV);
-                } else {
-                    emitter.spriteBake(sprites.get(targetCrate).getFirst(), MutableQuadView.BAKE_LOCK_UV);
-                }
-                emitter.color(-1, -1, -1, -1);
-                emitter.emit();
+                sprite = (direction == Direction.UP || direction == Direction.DOWN)
+                        ? list.getLast()
+                        : list.getFirst();
             }
+
+            emitter.spriteBake(sprite, MutableQuadView.BAKE_LOCK_UV);
+            emitter.color(-1, -1, -1, -1);
+            emitter.emit();
         }
     }
 
-    /// Renders the block, the item will use a similar method.
-    /// Kind of sloppy but if sprites is somehow empty the block is invisible, better than a crash right?
     @Override
-    public void emitBlockQuads(BlockRenderView blockRenderView, BlockState blockState, BlockPos blockPos, Supplier<Random> supplier, RenderContext renderContext) {
-        generateSprites();
-        if (sprites == null) return;
+    public void emitBlockQuads(BlockRenderView blockRenderView, BlockState blockState, BlockPos blockPos,
+                               Supplier<Random> supplier, RenderContext renderContext) {
 
+        // Local Vars
         QuadEmitter emitter = renderContext.getEmitter();
-        int targetId = 0;
-
         BlockEntity blockEntity = blockRenderView.getBlockEntity(blockPos);
-        if (blockEntity instanceof CrateBlockEntity crateBlockEntity){
+        String targetCrateId = "";
+
+        generateSprites();
+
+        if (blockEntity instanceof CrateBlockEntity crateBlockEntity) {
             String id = crateBlockEntity.getCrateId();
-            if (id == null) return;
-            for (int cId = 0; cId < Vars.crateDataMap.size(); cId = cId + 1){
-                String targetCrate = Util.getCrateIdByInt(cId);
-                if (Objects.equals(targetCrate, id)){
-                    targetId = cId;
-                    break;
-                }
+            if (id != null && Vars.crateDataMap.containsKey(id)) {
+                targetCrateId = id;
             }
         }
 
-        String targetCrate = Vars.crateDataMap.keySet().stream().toList().get(targetId);
+        if (targetCrateId.isBlank()) return;
+        if (!sprites.containsKey(targetCrateId)) return;
 
-        if (sprites.get(targetCrate) == null) return;
-        Integer sideCount = sprites.get(targetCrate).size();
-        insertSpritesOnMesh(emitter, targetCrate, sideCount);
+        int sideCount = sprites.get(targetCrateId).size();
+        insertSpritesOnMesh(emitter, targetCrateId, sideCount);
     }
 
-    /// Basically the same as the above, typing this here for consistency
     @Override
     public void emitItemQuads(ItemStack itemStack, Supplier<Random> supplier, RenderContext renderContext) {
-        generateSprites();
-        if (sprites == null) return;
-
+        // Local Vars
         QuadEmitter emitter = renderContext.getEmitter();
-        int targetId = 0;
+        String targetCrateId = itemStack.get(CrateItem.CRATE_ID);
 
-        String id = itemStack.get(CrateItem.CRATE_ID);
-        if (id == null) return;
-        for (int cId = 0; cId < Vars.crateDataMap.size(); cId = cId + 1){
-            String targetCrate = Util.getCrateIdByInt(cId);
-            if (Objects.equals(targetCrate, id)){
-                targetId = cId;
-                break;
-            }
-        }
-        String targetCrate = Vars.crateDataMap.keySet().stream().toList().get(targetId);
-        if (sprites.get(targetCrate) == null) return;
-        Integer sideCount = sprites.get(targetCrate).size();
-        insertSpritesOnMesh(emitter, targetCrate, sideCount);
+        generateSprites();
+
+        if (targetCrateId == null || !Vars.crateDataMap.containsKey(targetCrateId)) return;
+        if (!sprites.containsKey(targetCrateId)) return;
+
+        int sideCount = sprites.get(targetCrateId).size();
+        insertSpritesOnMesh(emitter, targetCrateId, sideCount);
     }
 }

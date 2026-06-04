@@ -18,6 +18,5 @@ public class ModDataGeneratorEntrypoint implements DataGeneratorEntrypoint {
     @Override
     public void buildRegistry(RegistryBuilder registryBuilder) {
         registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, ModEnchantmentProvider::bootstrap);
-
     }
 }

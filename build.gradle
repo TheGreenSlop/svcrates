@@ -16,6 +16,15 @@ repositories {
 
 loom {
 	splitEnvironmentSourceSets()
+		runs {
+			client {
+				runDir = "run"
+			}
+
+			server {
+				runDir = "run/server"
+			}
+		}
 
 	mods {
 		"svcrates" {

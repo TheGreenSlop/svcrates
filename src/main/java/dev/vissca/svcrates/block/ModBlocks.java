@@ -26,6 +26,9 @@ public class ModBlocks {
         }
         return Registry.register(Registries.BLOCK, id, block);
     }
+
+    /// Currently unused, if you are reading my code, know that in the future there will be decorative crates!
+    /// Non-data-driven tho.
     public static Block registerBlockWithItem(Block block, String name, boolean shouldRegisterItem) {
         Identifier id = Identifier.of(SvCrates.MOD_ID, name);
         if (shouldRegisterItem) {
@@ -34,5 +37,6 @@ public class ModBlocks {
         return Registry.register(Registries.BLOCK, id, block);
     }
 
+    /// WAKE UP, CLASS, NOW.
     public static void registerBlocks(){SvCrates.LOGGER.info("Registering Blocks for SvCrates!");}
 }

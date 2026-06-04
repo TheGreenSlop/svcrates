@@ -1,0 +1,32 @@
+{
+  "parent": "svcrates:collect_crates_one",
+  "criteria": {
+    "collect_crate_four": {
+      "conditions": {
+        "amount": 100
+      },
+      "trigger": "svcrates:get_crates"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancement.svcrates.collect_crate_four.description"
+    },
+    "icon": {
+      "components": {
+        "svcrates:crate_id": "diamond"
+      },
+      "count": 1,
+      "id": "svcrates:crate_block"
+    },
+    "title": {
+      "translate": "advancement.svcrates.collect_crate_four.title"
+    }
+  },
+  "requirements": [
+    [
+      "collect_crate_four"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
