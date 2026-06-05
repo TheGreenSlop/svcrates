@@ -11,7 +11,7 @@ You can get the mod here: [Modrinth Page](https://modrinth.com/mod/svcrates)
 
 By Scarlett/Vissca and bonniegem!
 
-## Credits:
+## Credits
 *Vissca:* Programming.
 
 *bonniegem:* Textures, quality control, sound design.
