@@ -1,6 +1,18 @@
 {
   "wooden": ["svcrates:crates/wooden_crate", ["*"], ["wooden_crate_side", "wooden_crate_top"], 20, ["minecraft:overworld"]],
   "copper": ["svcrates:crates/copper_crate", ["*"], ["copper_crate", "copper_crate"], 10, ["minecraft:overworld"]],
-  "iron": ["svcrates:crates/iron_crate", ["*"], ["iron_crate", "iron_crate"], 5, ["minecraft:overworld"]],
-  "diamond": ["svcrates:crates/diamond_crate", ["*"], ["diamond_crate", "diamond_crate"], 1, ["minecraft:overworld"]]
+  "iron": ["svcrates:crates/iron_crate", ["*"], ["iron_crate", "iron_crate"], 6, ["minecraft:overworld"]],
+  "diamond": ["svcrates:crates/diamond_crate", ["*"], ["diamond_crate", "diamond_crate"], 2, ["minecraft:overworld"]],
+
+  "taiga": ["svcrates:crates/taiga_crate", ["#minecraft:is_taiga", "#c:is_taiga", "#forge:is_taiga"],
+    ["taiga_crate", "taiga_crate"], 7, ["*"]],
+  "frozen": ["svcrates:crates/frozen_crate", ["#minecraft:spawns_snow_foxes", "minecraft:frozen_river",
+    "#c:is_frozen", "#forge:is_frozen", "minecraft:frozen_peaks", "minecraft:frozen_ocean", "minecraft:deep_frozen_ocean"],
+    ["frozen_crate", "frozen_crate"], 7, ["*"]],
+  "desert": ["svcrates:crates/desert_crate", ["#c:is_desert", "#forge:is_desert"],
+    ["desert_crate", "desert_crate"], 7, ["*"]],
+  "jungle": ["svcrates:crates/jungle_crate", ["#minecraft:is_jungle" ,"#c:is_jungle", "#forge:is_jungle"],
+    ["jungle_crate", "jungle_crate"], 7, ["*"]],
+  "ocean": ["svcrates:crates/ocean_crate", ["#minecraft:is_ocean" ,"#c:is_ocean", "#forge:is_ocean"],
+    ["ocean_crate", "ocean_crate"], 5, ["*"]]
 }

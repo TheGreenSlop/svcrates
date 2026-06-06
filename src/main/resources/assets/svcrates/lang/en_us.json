@@ -13,6 +13,11 @@
   "item.svcrates.warped_crate": "Warped Crate",
   "item.svcrates.purpur_crate": "Purpur Crate",
   "item.svcrates.broken_crate": "Broken Crate",
+  "item.svcrates.taiga_crate": "Taiga Crate",
+  "item.svcrates.desert_crate": "Desert Crate",
+  "item.svcrates.jungle_crate": "Jungle Crate",
+  "item.svcrates.frozen_crate": "Frozen Crate",
+  "item.svcrates.ocean_crate": "Ocean Crate",
 
   "itemgroup.svcrates.crate_items_tab": "Crates",
 

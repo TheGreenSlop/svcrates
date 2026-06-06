@@ -1,7 +1,6 @@
 package dev.vissca.svcrates.datagen.enchantment;
 
-import dev.vissca.svcrates.SvCrates;
-import dev.vissca.svcrates.enchantment.ModEnchantmentEffects;
+import dev.vissca.svcrates.enchantment.ModEnchantments;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.enchantment.Enchantment;
@@ -29,11 +28,11 @@ public class ModEnchantmentProvider extends FabricDynamicRegistryProvider {
 
     private static void register(Registerable<Enchantment> context, RegistryKey<Enchantment> key,
                                  Enchantment.Builder builder) {
-        context.register(key, builder.build(key.getRegistry()));
+        context.register(key, builder.build(key.getValue()));
     }
 
     public static void bootstrap(Registerable<Enchantment> context) {
-        register(context, ModEnchantmentEffects.UNBOXING,
+        register(context, ModEnchantments.UNBOXING,
                 Enchantment.builder(
                         Enchantment.definition(context.getRegistryLookup(RegistryKeys.ITEM).getOrThrow(
                                 ItemTags.FISHING_ENCHANTABLE),

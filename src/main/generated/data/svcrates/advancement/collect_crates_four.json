@@ -1,5 +1,5 @@
 {
-  "parent": "svcrates:collect_crates_one",
+  "parent": "svcrates:collect_crates_three",
   "criteria": {
     "collect_crate_four": {
       "conditions": {
@@ -12,6 +12,7 @@
     "description": {
       "translate": "advancement.svcrates.collect_crate_four.description"
     },
+    "frame": "challenge",
     "icon": {
       "components": {
         "svcrates:crate_id": "diamond"

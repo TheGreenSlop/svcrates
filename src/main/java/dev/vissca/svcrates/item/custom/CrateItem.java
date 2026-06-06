@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.component.ComponentType;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemPlacementContext;
@@ -77,12 +78,11 @@ public class CrateItem extends BlockItem {
             player.increaseStat(ModStatistics.OPEN_CRATE, 1);
             List<ItemStack> stacks = lootTable.generateLoot(lootContextParameterSet);
             for (ItemStack itemStack : stacks) {
+                player.swingHand(hand);
                 if (!player.giveItemStack(itemStack)) {
                     player.dropItem(itemStack, false);
                 }
             }
-
-
         } else {
             return TypedActionResult.fail(stack);
         }
@@ -131,6 +131,27 @@ public class CrateItem extends BlockItem {
             }
         }
         return true;
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        if (!world.isClient()){
+            if (!stack.contains(CRATE_ID)){
+                stack.set(CRATE_ID, "wooden");
+                if (!stack.contains(CRATE_LOOT_ID)){
+                    stack.set(CRATE_LOOT_ID, Vars.crateDataMap.get(stack.get(CRATE_ID)).lootTableId());
+                }
+            } else {
+                if (!Vars.crateDataMap.containsKey(stack.get(CRATE_ID))){
+                    stack.set(CRATE_ID, "wooden");
+                    if (!stack.contains(CRATE_LOOT_ID)){
+                        stack.set(CRATE_LOOT_ID, Vars.crateDataMap.get(stack.get(CRATE_ID)).lootTableId());
+                    }
+                }
+            }
+
+        }
+        super.inventoryTick(stack, world, entity, slot, selected);
     }
 }
 

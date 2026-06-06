@@ -1,9 +1,9 @@
 package dev.vissca.svcrates.mixin;
 
 import dev.vissca.svcrates.SvCrates;
+import dev.vissca.svcrates.enchantment.ModEnchantments;
 import dev.vissca.svcrates.system.Vars;
 import dev.vissca.svcrates.advancement.criterion.ModCriteria;
-import dev.vissca.svcrates.enchantment.ModEnchantmentEffects;
 import dev.vissca.svcrates.statistic.ModStatistics;
 import dev.vissca.svcrates.block.ModBlocks;
 import dev.vissca.svcrates.item.custom.CrateItem;
@@ -44,7 +44,7 @@ public abstract class FishUpCrateMixin { // Modifying the output Loot from when 
 		Objects.requireNonNull(getPlayerOwner()).getWorld().getBiome(getPlayerOwner().getBlockPos());
 		RegistryEntry<Enchantment> unboxing = getPlayerOwner().getWorld().getRegistryManager()
 				.getWrapperOrThrow(RegistryKeys.ENCHANTMENT)
-				.getOrThrow(ModEnchantmentEffects.UNBOXING);
+				.getOrThrow(ModEnchantments.UNBOXING);
 		int level = EnchantmentHelper.getLevel(unboxing, getPlayerOwner().getInventory().getMainHandStack());
 
 		RegistryEntry<Biome> biome = getPlayerOwner().getWorld().getBiome(getPlayerOwner().getBlockPos());

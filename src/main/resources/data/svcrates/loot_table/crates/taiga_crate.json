@@ -3,28 +3,42 @@
     {
       "rolls": {
         "type": "minecraft:uniform",
-        "min": 4,
-        "max": 10
+        "min": 8,
+        "max": 12
       },
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:raw_copper",
-          "weight": 50,
+          "name": "minecraft:podzol",
+          "weight": 32,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 3
+                "max": 12
               }
             }
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:copper_ingot",
-          "weight": 25,
+          "name": "minecraft:spruce_log",
+          "weight": 64,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:green_dye",
+          "weight": 12,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -37,27 +51,69 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:redstone",
-          "weight": 40,
+          "name": "minecraft:spruce_sapling",
+          "weight": 24,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 2,
-                "max": 16
+                "min": 1,
+                "max": 2
               }
             }
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:bowl",
-          "weight": 5
+          "name": "minecraft:emerald",
+          "weight": 4
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:slime_ball",
-          "weight": 25,
+          "name": "minecraft:diamond_shovel",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.1,
+                "max": 0.3
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:large_fern",
+          "weight": 23,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fern",
+          "weight": 26,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mossy_cobblestone",
+          "weight": 56,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -70,55 +126,50 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:pufferfish",
-          "weight": 2
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:kelp",
-          "weight": 15,
+          "name": "minecraft:sweet_berries",
+          "weight": 36,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 16
+                "max": 8
               }
             }
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:iron_nugget",
-          "weight": 1,
+          "name": "minecraft:brown_mushroom",
+          "weight": 40,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 4,
-                "max": 9
+                "min": 1,
+                "max": 14
               }
             }
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:gold_nugget",
-          "weight": 5,
+          "name": "minecraft:red_mushroom",
+          "weight": 40,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 4,
-                "max": 9
+                "min": 1,
+                "max": 14
               }
             }
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:book",
-          "weight": 5,
+          "name": "minecraft:coarse_dirt",
+          "weight": 40,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -131,8 +182,89 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:paper",
-          "weight": 15,
+          "name": "minecraft:book",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:enchant_randomly",
+              "options": "#minecraft:exclusive_set/mining"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:gunpowder",
+          "weight": 44,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:string",
+          "weight": 32,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:golden_apple",
+          "weight": 12,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sweet_berries",
+          "weight": 42,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:dead_bush",
+          "weight": 12,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:ink_sac",
+          "weight": 24,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -145,64 +277,27 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:sea_pickle",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 2
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:melon_seeds",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 4
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:pumpkin_seeds",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 4
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:golden_carrot",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 2
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:bone_meal",
+          "name": "minecraft:emerald",
           "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:water_bucket",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:brown_terracotta",
+          "weight": 16,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -215,85 +310,48 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:mossy_cobblestone",
-          "weight": 50,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 4,
-                "max": 12
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:string",
-          "weight": 25,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 3,
-                "max": 9
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:orange_dye",
-          "weight": 5,
+          "name": "minecraft:white_terracotta",
+          "weight": 16,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 2
+                "max": 16
               }
             }
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:green_dye",
-          "weight": 5,
+          "name": "minecraft:gravel",
+          "weight": 40,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 2
+                "max": 16
               }
             }
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:fishing_rod",
-          "weight": 1,
-          "functions": []
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:book",
-          "weight": 1,
+          "name": "minecraft:flint",
+          "weight": 20,
           "functions": [
             {
-              "function": "minecraft:set_enchantments",
-              "enchantments": {
-                "svcrates:unboxing": {
-                  "type": "minecraft:uniform",
-                  "min": 1,
-                  "max": 1
-                }
-              },
-              "add": true
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 16
+              }
             }
           ]
         }
       ]
     }
-  ]
+  ],
+  "functions": []
 }

@@ -68,7 +68,7 @@ public class ModAdvancementProvider extends FabricAdvancementProvider {
 
         CollectCrateFour = generateCrateAdvancementHelper(
                 "diamond", "collect_crate_four", "collect_crates_four",
-                AdvancementFrame.TASK, consumer, CollectCrateOne, 100);
+                AdvancementFrame.CHALLENGE, consumer, CollectCrateThree, 100);
 
 
     }

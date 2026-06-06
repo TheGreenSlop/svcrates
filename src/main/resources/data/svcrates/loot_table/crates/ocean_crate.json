@@ -3,122 +3,29 @@
     {
       "rolls": {
         "type": "minecraft:uniform",
-        "min": 4,
-        "max": 10
+        "min": 6,
+        "max": 12
       },
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:raw_copper",
-          "weight": 50,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 3
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:copper_ingot",
-          "weight": 25,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 2
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:redstone",
-          "weight": 40,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 2,
-                "max": 16
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:bowl",
-          "weight": 5
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:slime_ball",
-          "weight": 25,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 6
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
           "name": "minecraft:pufferfish",
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cod",
+          "weight": 50
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:fishing_rod",
           "weight": 2
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:kelp",
-          "weight": 15,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 16
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:iron_nugget",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 4,
-                "max": 9
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:gold_nugget",
-          "weight": 5,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 4,
-                "max": 9
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:book",
-          "weight": 5,
+          "name": "minecraft:tropical_fish",
+          "weight": 12,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -131,14 +38,14 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:paper",
-          "weight": 15,
+          "name": "minecraft:kelp",
+          "weight": 50,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 3
+                "max": 16
               }
             }
           ]
@@ -146,7 +53,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:sea_pickle",
-          "weight": 1,
+          "weight": 30,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -159,36 +66,22 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:melon_seeds",
-          "weight": 10,
+          "name": "minecraft:seagrass",
+          "weight": 32,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 4
+                "max": 5
               }
             }
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:pumpkin_seeds",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 4
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:golden_carrot",
-          "weight": 1,
+          "name": "minecraft:prismarine_shard",
+          "weight": 4,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -201,8 +94,70 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:bone_meal",
-          "weight": 2,
+          "name": "minecraft:prismarine_crystals",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 2
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:trident",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 0.2,
+                "max": 0.9
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:heart_of_the_sea",
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:mossy_cobblestone",
+          "weight": 32,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 8
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:sand",
+          "weight": 10,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -215,50 +170,51 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:mossy_cobblestone",
-          "weight": 50,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 4,
-                "max": 12
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:string",
-          "weight": 25,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 3,
-                "max": 9
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:orange_dye",
-          "weight": 5,
+          "name": "minecraft:clay",
+          "weight": 32,
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
                 "min": 1,
-                "max": 2
+                "max": 16
               }
             }
           ]
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:green_dye",
-          "weight": 5,
+          "name": "minecraft:bucket",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:water_bucket",
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:barrel",
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:string",
+          "weight": 16,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 1,
+                "max": 16
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:rotten_flesh",
+          "weight": 16,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -272,8 +228,29 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:fishing_rod",
-          "weight": 1,
-          "functions": []
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "min": 5,
+                "max": 30
+              },
+              "options": [
+                "minecraft:lure",
+                "minecraft:luck_of_the_sea"
+              ]
+            },
+            {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 0.3,
+                "max": 0.9
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
@@ -286,10 +263,37 @@
                 "svcrates:unboxing": {
                   "type": "minecraft:uniform",
                   "min": 1,
-                  "max": 1
+                  "max": 3
                 }
               },
               "add": true
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:book",
+          "weight": 2,
+          "conditions": [],
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "item": "",
+              "levels": 30,
+              "options": "#minecraft:non_treasure",
+              "conditions": []
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:book",
+          "weight": 1,
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": 30,
+              "options": "#minecraft:treasure"
             }
           ]
         }

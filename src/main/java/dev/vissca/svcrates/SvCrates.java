@@ -1,10 +1,11 @@
 package dev.vissca.svcrates;
 
+import dev.vissca.svcrates.datagen.enchantment.ModEnchantmentProvider;
+import dev.vissca.svcrates.enchantment.ModEnchantments;
 import dev.vissca.svcrates.system.*;
 import dev.vissca.svcrates.block.ModBlocks;
 import dev.vissca.svcrates.block.entity.ModBlockEntities;
 import dev.vissca.svcrates.advancement.criterion.ModCriteria;
-import dev.vissca.svcrates.enchantment.ModEnchantmentEffects;
 import dev.vissca.svcrates.item.ModItemGroups;
 import dev.vissca.svcrates.item.ModItems;
 import dev.vissca.svcrates.statistic.ModStatistics;
@@ -57,7 +58,7 @@ public class SvCrates implements ModInitializer {
 		ModBlocks.registerBlocks();
 		ModBlockEntities.registerBlockEntities();
 		ModItemGroups.registerItemGroups();
-		ModEnchantmentEffects.registerModEnchantmentEffects();
+		ModEnchantments.registerModEnchantments();
 		ModStatistics.registerStatistics();
 		ModCriteria.registerModCriteria();
 		LOGGER.info("Loaded {} crates", Vars.crateDataMap.size());
