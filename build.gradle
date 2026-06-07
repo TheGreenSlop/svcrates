@@ -19,6 +19,7 @@ loom {
 		runs {
 			client {
 				runDir = "run"
+				programArgs(["--username", "Vissca", "--uuid", "f9e7afd2-ddba-4700-bb1d-df33aa75483b"])
 			}
 
 			server {

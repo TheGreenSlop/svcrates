@@ -1,5 +1,7 @@
 package dev.vissca.svcrates.item.custom;
 
+import com.mojang.authlib.exceptions.MinecraftClientException;
+import com.mojang.authlib.minecraft.client.MinecraftClient;
 import com.mojang.serialization.Codec;
 import dev.vissca.svcrates.SvCrates;
 import dev.vissca.svcrates.statistic.ModStatistics;
@@ -14,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
@@ -22,8 +25,10 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
@@ -61,7 +66,7 @@ public class CrateItem extends BlockItem {
         RegistryKey<LootTable> tableName = RegistryKey.of(RegistryKeys.LOOT_TABLE,
                 Identifier.of(Objects.requireNonNull(stack.get(CRATE_LOOT_ID))));
         if (tableName == null)return TypedActionResult.fail(stack);
-
+        boolean doSwing = false;
         if (!world.isClient && player.isSneaking()){
             if (!player.isCreative()){
                 stack.decrement(1);
@@ -79,12 +84,19 @@ public class CrateItem extends BlockItem {
             List<ItemStack> stacks = lootTable.generateLoot(lootContextParameterSet);
             for (ItemStack itemStack : stacks) {
                 player.swingHand(hand);
+                doSwing = true;
                 if (!player.giveItemStack(itemStack)) {
                     player.dropItem(itemStack, false);
                 }
             }
         } else {
+
             return TypedActionResult.fail(stack);
+        }
+        if (world.isClient()){
+            if (doSwing){
+                player.swingHand(hand);
+            }
         }
         return TypedActionResult.consume(stack);
     }
@@ -98,7 +110,6 @@ public class CrateItem extends BlockItem {
             return Text.translatable("item.svcrates."+ Vars.crateDataMap.get(stack.get(CRATE_ID)).id() +"_crate");
         }
         return Text.translatable("item.svcrates.broken_crate");
-
     }
 
     /// This makes the item place the CrateBlock and passes its data into it.
@@ -152,6 +163,12 @@ public class CrateItem extends BlockItem {
 
         }
         super.inventoryTick(stack, world, entity, slot, selected);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
+
+        tooltip.add(Text.translatable("item.svcrates.crate_item_tip.tooltip").formatted(Formatting.GRAY));
     }
 }
 

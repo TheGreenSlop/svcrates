@@ -14,5 +14,8 @@
   "jungle": ["svcrates:crates/jungle_crate", ["#minecraft:is_jungle" ,"#c:is_jungle", "#forge:is_jungle"],
     ["jungle_crate", "jungle_crate"], 7, ["*"]],
   "ocean": ["svcrates:crates/ocean_crate", ["#minecraft:is_ocean" ,"#c:is_ocean", "#forge:is_ocean"],
-    ["ocean_crate", "ocean_crate"], 5, ["*"]]
+    ["ocean_crate", "ocean_crate"], 5, ["*"]],
+
+  "chorus": ["svcrates:crates/chorus_crate", ["*"], ["chorus_crate", "chorus_crate"], 20, ["minecraft:the_end"]],
+  "purpur": ["svcrates:crates/purpur_crate", ["*"], ["purpur_crate", "purpur_crate"], 5, ["minecraft:the_end"]]
 }

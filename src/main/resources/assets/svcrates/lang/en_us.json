@@ -32,5 +32,6 @@
 
   "enchantment.svcrates.unboxing": "Unboxing",
   "stat.svcrates.fish_up_crate": "Crates Fished",
-  "stat.svcrates.open_crate": "Crates Opened"
+  "stat.svcrates.open_crate": "Crates Opened",
+  "item.svcrates.crate_item_tip.tooltip": "Crouch-Interact in your hand to open."
 }

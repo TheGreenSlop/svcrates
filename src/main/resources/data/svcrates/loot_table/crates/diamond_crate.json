@@ -10,7 +10,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:cobbled_deepslate",
-          "weight": 45,
+          "weight": 32,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -38,7 +38,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:redstone",
-          "weight": 40,
+          "weight": 16,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -198,7 +198,7 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:mossy_cobblestone",
-          "weight": 32,
+          "weight": 16,
           "functions": [
             {
               "function": "minecraft:set_count",
