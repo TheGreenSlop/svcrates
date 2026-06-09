@@ -6,10 +6,14 @@ import dev.vissca.svcrates.block.entity.custom.CrateBlockEntity;
 import dev.vissca.svcrates.item.custom.CrateItem;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -71,6 +75,7 @@ public class CrateBlock extends BlockWithEntity implements BlockEntityProvider {
         return super.onBreak(world, pos, state, player);
     }
 
+
     /// Tells the game what kind of render this should have, I think? It came with my freaking class
     /// I don't remember :p (I think)
     @Override
@@ -94,4 +99,5 @@ public class CrateBlock extends BlockWithEntity implements BlockEntityProvider {
             super.onStateReplaced(state, world, pos, newState, moved);
         }
     }
+
 }

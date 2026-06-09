@@ -37,20 +37,6 @@
         },
         {
           "type": "minecraft:item",
-          "name": "snow",
-          "weight": 16,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 3
-              }
-            }
-          ]
-        },
-        {
-          "type": "minecraft:item",
           "name": "minecraft:blue_dye",
           "weight": 16,
           "functions": [
