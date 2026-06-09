@@ -7,6 +7,7 @@ import dev.vissca.svcrates.SvCrates;
 import dev.vissca.svcrates.statistic.ModStatistics;
 import dev.vissca.svcrates.system.Vars;
 import dev.vissca.svcrates.block.entity.custom.CrateBlockEntity;
+import dev.vissca.svcrates.system.config.ModConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -167,8 +168,9 @@ public class CrateItem extends BlockItem {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-
-        tooltip.add(Text.translatable("item.svcrates.crate_item_tip.tooltip").formatted(Formatting.GRAY));
+        if (SvCrates.CONFIG.displayCrateTooltip){
+            tooltip.add(Text.translatable("item.svcrates.crate_item_tip.tooltip").formatted(Formatting.GRAY));
+        }
     }
 }
 

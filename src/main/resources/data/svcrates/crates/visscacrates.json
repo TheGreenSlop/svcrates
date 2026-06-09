@@ -10,11 +10,11 @@
     "#c:is_frozen", "#forge:is_frozen", "minecraft:frozen_peaks", "minecraft:frozen_ocean", "minecraft:deep_frozen_ocean"],
     ["frozen_crate", "frozen_crate"], 7, ["*"]],
   "desert": ["svcrates:crates/desert_crate", ["#c:is_desert", "#forge:is_desert"],
-    ["desert_crate", "desert_crate"], 7, ["*"]],
+    ["desert_crate_side", "desert_crate_top"], 7, ["*"]],
   "jungle": ["svcrates:crates/jungle_crate", ["#minecraft:is_jungle" ,"#c:is_jungle", "#forge:is_jungle"],
     ["jungle_crate", "jungle_crate"], 7, ["*"]],
   "ocean": ["svcrates:crates/ocean_crate", ["#minecraft:is_ocean" ,"#c:is_ocean", "#forge:is_ocean"],
-    ["ocean_crate", "ocean_crate"], 5, ["*"]],
+    ["ocean_crate_side", "ocean_crate_top"], 5, ["*"]],
 
   "chorus": ["svcrates:crates/chorus_crate", ["*"], ["chorus_crate", "chorus_crate"], 20, ["minecraft:the_end"]],
   "purpur": ["svcrates:crates/purpur_crate", ["*"], ["purpur_crate", "purpur_crate"], 5, ["minecraft:the_end"]]
