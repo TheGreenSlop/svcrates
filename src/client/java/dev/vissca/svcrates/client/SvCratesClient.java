@@ -3,6 +3,7 @@ package dev.vissca.svcrates.client;
 import dev.vissca.svcrates.SvCrates;
 import dev.vissca.svcrates.block.entity.render.CrateBlockEntityModelLoader;
 import dev.vissca.svcrates.item.ModItemGroups;
+import dev.vissca.svcrates.system.ClientResourceReloadListener;
 import dev.vissca.svcrates.system.ModResourceReloadListener;
 import dev.vissca.svcrates.system.Vars;
 import dev.vissca.svcrates.system.networking.CrateDataPayload;
@@ -45,6 +46,9 @@ public class SvCratesClient implements ClientModInitializer {
 
 		// Payload Registers
 		ClientPlayNetworking.registerGlobalReceiver(CrateDataPayload.ID, SvCratesClient::handleCrateDataReceived);
+
+		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES)
+				.registerReloadListener(new ClientResourceReloadListener());
 	}
 
 	/// Basic ass helper method for redoing the sprite textures in case Vars.crateSprites doesn't get filled at all on the client.

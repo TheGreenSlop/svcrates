@@ -1,0 +1,37 @@
+{
+  "item.svcrates.wooden_crate": "Caixa de Madeira",
+  "item.svcrates.copper_crate": "Caixa de Cobre",
+  "item.svcrates.chorus_crate": "Caixa de Coro",
+  "item.svcrates.crimson_crate": "Caixa de Carmesim",
+  "item.svcrates.ender_crate": "Caixa do Ender",
+  "item.svcrates.diamond_crate": "Caixa de Diamante",
+  "item.svcrates.gilded_crate": "Caixa Dourada",
+  "item.svcrates.iron_crate": "Caixa de Ferro",
+  "item.svcrates.nether_crate": "Caixa do Nether",
+  "item.svcrates.netherite_crate": "Caixa de Netherita",
+  "item.svcrates.trial_crate": "Caixa do Desafio",
+  "item.svcrates.warped_crate": "Caixa Distorcida",
+  "item.svcrates.purpur_crate": "Caixa de Purpur",
+  "item.svcrates.broken_crate": "Caixa Quebrada",
+  "item.svcrates.taiga_crate": "Caixa da Taiga",
+  "item.svcrates.desert_crate": "Caixa do Deserto",
+  "item.svcrates.jungle_crate": "Caixa de Selva",
+  "item.svcrates.frozen_crate": "Caixa  Congelada",
+  "item.svcrates.ocean_crate": "Caixa do Oceano",
+
+  "itemgroup.svcrates.crate_items_tab": "Crates",
+
+  "advancement.svcrates.collect_crate_one.title": "Primeiro Unboxing",
+  "advancement.svcrates.collect_crate_one.description": "Obtenha uma caixa equanto pesca!",
+  "advancement.svcrates.collect_crate_two.title": "Caixas Demais!",
+  "advancement.svcrates.collect_crate_two.description": "Pesque 25 caixas.",
+  "advancement.svcrates.collect_crate_three.title": "Quebra-Caixa",
+  "advancement.svcrates.collect_crate_three.description": "Pesque 50 caixas.",
+  "advancement.svcrates.collect_crate_four.title": "Rei das Caixas",
+  "advancement.svcrates.collect_crate_four.description": "Pesque 100 caixas, e reevalie suas desições de vida.",
+
+  "enchantment.svcrates.unboxing": "Desempacotamento",
+  "stat.svcrates.fish_up_crate": "Caixas Pescadas",
+  "stat.svcrates.open_crate": "Caixas Abertas",
+  "item.svcrates.crate_item_tip.tooltip": "Agache-se e interaja com o item na mão para abrir."
+}

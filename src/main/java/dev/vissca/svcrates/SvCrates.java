@@ -12,6 +12,7 @@ import dev.vissca.svcrates.statistic.ModStatistics;
 import dev.vissca.svcrates.system.config.ModConfig;
 import dev.vissca.svcrates.system.config.ModConfigManager;
 import dev.vissca.svcrates.system.networking.CrateDataPayload;
+import dev.vissca.svcrates.system.networking.RequestCrateDataPayload;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
@@ -44,15 +45,16 @@ public class SvCrates implements ModInitializer {
 
 		ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
 			ServerPlayerEntity player = handler.getPlayer();
-			if (!Vars.crateDataMap.isEmpty()){
-				for (int dId = 0; dId < Vars.crateDataMap.size(); dId += 1) {
-					String crateId = Util.getCrateIdByInt(dId);
-					Vars.CrateData crate = Vars.crateDataMap.get(crateId);
-					ServerPlayNetworking.send(player, new CrateDataPayload(crate, crateId));
-				}
-			}
+			syncPlayerCratePayload(player);
 		});
 
+		PayloadTypeRegistry.playC2S().register(RequestCrateDataPayload.ID, RequestCrateDataPayload.CODEC);
+		ServerPlayNetworking.registerGlobalReceiver(
+				RequestCrateDataPayload.ID,
+				(payload, context) -> {
+					syncPlayerCratePayload(context.player());
+				}
+		);
 
 		ModItems.registerModItems();
 		ModBlocks.registerBlocks();
@@ -62,6 +64,16 @@ public class SvCrates implements ModInitializer {
 		ModStatistics.registerStatistics();
 		ModCriteria.registerModCriteria();
 		LOGGER.info("Loaded {} crates", Vars.crateDataMap.size());
+	}
+
+	public static void syncPlayerCratePayload(ServerPlayerEntity player){
+		if (!Vars.crateDataMap.isEmpty()){
+			for (int dId = 0; dId < Vars.crateDataMap.size(); dId += 1) {
+				String crateId = Util.getCrateIdByInt(dId);
+				Vars.CrateData crate = Vars.crateDataMap.get(crateId);
+				ServerPlayNetworking.send(player, new CrateDataPayload(crate, crateId));
+			}
+		}
 	}
 }
 
