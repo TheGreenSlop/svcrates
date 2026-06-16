@@ -67,9 +67,12 @@ public class SvCrates implements ModInitializer {
 	}
 
 	public static void syncPlayerCratePayload(ServerPlayerEntity player){
+
 		if (!Vars.crateDataMap.isEmpty()){
 			for (int dId = 0; dId < Vars.crateDataMap.size(); dId += 1) {
 				String crateId = Util.getCrateIdByInt(dId);
+				LOGGER.info("gg");
+				LOGGER.info(crateId);
 				Vars.CrateData crate = Vars.crateDataMap.get(crateId);
 				ServerPlayNetworking.send(player, new CrateDataPayload(crate, crateId));
 			}

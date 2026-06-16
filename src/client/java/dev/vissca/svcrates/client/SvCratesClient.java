@@ -1,6 +1,7 @@
 package dev.vissca.svcrates.client;
 
 import dev.vissca.svcrates.SvCrates;
+import dev.vissca.svcrates.block.entity.render.CrateBlockEntityBakedModel;
 import dev.vissca.svcrates.block.entity.render.CrateBlockEntityModelLoader;
 import dev.vissca.svcrates.item.ModItemGroups;
 import dev.vissca.svcrates.system.ClientResourceReloadListener;
@@ -60,7 +61,6 @@ public class SvCratesClient implements ClientModInitializer {
 			String gottenSprite = Vars.getSprite(spritePath);
 			spriteList.add(gottenSprite);
 		}
-
 		Vars.crateSprites.put(id, spriteList);
 	}
 

@@ -35,7 +35,6 @@ public class ModResourceReloadListener implements SimpleSynchronousResourceReloa
     /// Being honest no clue how this works, just copied it online, will try breaking it down eventually
     /// Because I'd like to know what is going on.
     public void gatherCrateResources(ResourceManager manager){
-        Vars.crateDataMap.clear();
         Vars.biomeMap.clear();
         Vars.dimensionMap.clear();
         Vars.crateSprites.clear();
